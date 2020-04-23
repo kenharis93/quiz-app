@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ApiService } from './api.service';
 
 @Component({
     selector: 'question',
@@ -7,14 +8,16 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 
 export class QuestionComponent implements OnInit {
-form: FormGroup;
+question: FormGroup;
+
+    constructor(private api: ApiService) {}
 
 ngOnInit(){
-    this.form = new FormGroup({
-        question: new FormControl('')
+    this.question = new FormGroup({
+        text: new FormControl('')
     });
 }
     post(question) {
-        console.log(question);
+        this.api.postQuestion(question);
     }
 }
