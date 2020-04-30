@@ -21,6 +21,7 @@ export class QuestionsComponent {
 
     updateQuestion(question){
         this.api.selectQuestion(question);
+        console.log(question);
     }
 
 }

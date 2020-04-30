@@ -29,4 +29,22 @@ ngOnInit(){
     post(question) {
         this.api.postQuestion(question);
     }
+
+    /*this works by using questionData pulled from backend which contains the ID, 
+    then passing the new values to this object and returning it back to the back end
+    */
+    put(question){
+        this.questionData.text = question.text;
+        this.questionData.correctAnswer = question.correctAnswer;
+        this.questionData.answer1 = question.answer1;
+        this.questionData.answer2 = question.answer2;
+        this.questionData.answer3 = question.answer3;
+        this.api.putQuestion(this.questionData);
+    }
+
+    //Resets the form, clears temporary questionData
+    newQuestion(){
+        this.questionData = null;
+        this.question.reset();
+    }
 }

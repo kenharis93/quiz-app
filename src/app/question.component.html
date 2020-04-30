@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-title>
     <span *ngIf="questionData">Edit Question</span>
-    <span *ngIf="questionData">New Question</span>
+    <span *ngIf="!questionData">New Question</span>
   </mat-card-title>
   <mat-card-content>
     <form [formGroup]="question">
@@ -28,6 +28,8 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button (click)="post(question.value)" mat-button>POST</button>
+    <button *ngIf="!questionData" (click)="post(question.value)" mat-button>POST</button>
+    <button *ngIf="questionData" (click)="put(question.value)" mat-button>EDIT</button>
+    <button *ngIf="questionData" (click)="newQuestion()" mat-button>NEW</button>
   </mat-card-actions>
 </mat-card>
