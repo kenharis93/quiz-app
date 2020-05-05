@@ -13,7 +13,9 @@ import { HomeComponent } from './home.component';
 import { NavComponent } from './nav.component';
 import { QuizComponent } from './quiz.component';
 import { QuizzesComponent } from './quizzes.component';
+import { RegisterComponent } from './register.component';
 import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 
 //Angular Materials Imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +36,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     HomeComponent,
     NavComponent,
     QuizComponent,
-    QuizzesComponent
+    QuizzesComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule, MatInputModule, MatCardModule, MatListModule, MatToolbarModule,
     FormsModule, ReactiveFormsModule
   ],
-  providers: [ ApiService ],
+  providers: [ ApiService, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
