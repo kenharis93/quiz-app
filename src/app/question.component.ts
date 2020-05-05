@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ApiService } from './api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'question',
@@ -12,9 +13,11 @@ export class QuestionComponent implements OnInit {
 
     question: FormGroup;
     questionData;
-    constructor(private api: ApiService) {}
+    quizId: Number;
+    constructor(private api: ApiService, private route: ActivatedRoute) {}
 
 ngOnInit(){
+    this.quizId = parseInt(this.route.snapshot.paramMap.get('quizId'));
     this.api.questionSelected.subscribe(question => this.questionData = question);
     this.api.questionSelected.subscribe(question => this.question.patchValue(question));
 
@@ -27,6 +30,7 @@ ngOnInit(){
     });
 }
     post(question) {
+        question.quizId = this.quizId;
         this.api.postQuestion(question);
     }
 
@@ -34,6 +38,7 @@ ngOnInit(){
     then passing the new values to this object and returning it back to the back end
     */
     put(question){
+        //MAP FORM VALUES TO THE QUESTION OBJECT PASSED IN
         this.questionData.text = question.text;
         this.questionData.correctAnswer = question.correctAnswer;
         this.questionData.answer1 = question.answer1;
