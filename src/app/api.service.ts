@@ -51,6 +51,10 @@ export class ApiService {
         return this.http.get('https://localhost:44377/api/quizzes');
     }
 
+    getAllQuizzes(){
+        return this.http.get('https://localhost:44377/api/quizzes/all');
+    }
+
     putQuiz(quiz){
         this.http.put('https://localhost:44377/api/quizzes/'+ quiz.id, quiz)
         .subscribe(res => {
